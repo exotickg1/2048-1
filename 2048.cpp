@@ -1,8 +1,15 @@
+/*************************************************************************
+	> File Name: 2048.cpp
+	> Author: wilson_91
+	> Mail: wilson_91@qq.com 
+	> Created Time: Thu 20 Mar 2014 08:53:41 PM CST
+ ************************************************************************/
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 #include <iomanip>
 #include <conio.h>
+
 using namespace std;
 
 enum movDirection{LEFT = 4,UP = 8,RIGHT = 6,DOWN = 2};
@@ -25,10 +32,12 @@ int main()
 	//当棋盘还能移动的时候，循环执行
 	//否则，退出循环
 	int motion;
+	bool skipMotion;
 	while(flag)
 	{
 		//打印之前应该先清空控制台
 		system("cls");
+		skipMotion = false;
 		//system("clear");//for linux version
 		for (int i = 1;i < 5;i++)
 		{
@@ -184,8 +193,10 @@ int main()
 			}
 			break;
 		default:
+			skipMotion = true;
 			break;
 		}
+		if(skipMotion) continue;
 		//添加一个新值到数组中
 		//method one：
 		int newValue = rand()%2?4:2;
